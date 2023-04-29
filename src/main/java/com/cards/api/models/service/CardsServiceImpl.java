@@ -1,13 +1,12 @@
 package com.cards.api.models.service;
 
+import com.cards.api.exception.custom.CardNotFoundException;
 import com.cards.api.models.entity.Card;
 import com.cards.api.repository.CardsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CardsServiceImpl implements CardsService{
@@ -17,13 +16,12 @@ public class CardsServiceImpl implements CardsService{
 
     @Override
     public Card findCardByID(Long id) {
-        try {
-            return repository.findById(id)
-                    .orElseThrow(Exception::new);
-        } catch (Exception e) {
-            LOG.error("Error trying to get card {}", e.getMessage());
+        return repository.findById(id)
+                .orElseThrow(()->new CardNotFoundException("Card was not found"));
+    }
 
-        }
-        return new Card();
+    @Override
+    public Card createACard(Card card) {
+        return repository.save(card);
     }
 }

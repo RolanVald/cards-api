@@ -17,6 +17,7 @@ import java.util.Date;
 public class Card {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String cardNumber;
@@ -24,6 +25,7 @@ public class Card {
     private Date paymentDeadline;
     private Date cutoffDate;
     private BigDecimal creditAmount;
+    private boolean active;
     private String createBy;
     @Column( updatable = false)
     private Date createdAt;
@@ -33,6 +35,7 @@ public class Card {
     protected void prePersist() {
         this.createdAt = new Date();
         this.updatedAt = this.createdAt;
+        this.createBy = "User";
     }
 
     @PreUpdate
