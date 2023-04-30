@@ -1,6 +1,6 @@
 package com.cards.api.controllers;
 
-import com.cards.api.exception.custom.CardNotFoundException;
+import com.cards.api.exception.custom.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
@@ -61,8 +61,8 @@ public class ErrorController {
         return new ResponseEntity<>(er, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(CardNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> cardNotFoundException(CardNotFoundException e) {
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> cardNotFoundException(EntityNotFoundException e) {
         ExceptionResponse er = new ExceptionResponse(HttpStatus.NOT_FOUND.value(), e.getMessage());
         return new ResponseEntity<>(er, HttpStatus.NOT_FOUND);
     }

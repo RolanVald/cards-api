@@ -4,41 +4,45 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+@AllArgsConstructor
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
-public class Card {
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
-    private String cardNumber;
-    private String expirationDate;
-    private Date paymentDeadline;
-    private Date cutoffDate;
-    private BigDecimal creditAmount;
-    private BigDecimal available;
-    private boolean active;
+    private String lastname;
+    private String gender;
+    private String email;
+    private String password;
+    @Temporal(TemporalType.DATE)
+    private Calendar birthDay;
+    @CreatedBy
     private String createBy;
     @Column( updatable = false)
     private Date createdAt;
     private Date updatedAt;
 
+    @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private List<Card> cards;
+
     @PrePersist
     protected void prePersist() {
         this.createdAt = new Date();
         this.updatedAt = this.createdAt;
-        this.createBy = "User";
-        this.active = true;
-        this.available = this.creditAmount;
     }
 
     @PreUpdate

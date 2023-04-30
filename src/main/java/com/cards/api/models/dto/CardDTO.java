@@ -21,8 +21,6 @@ public class CardDTO {
     private Date paymentDeadline;
     private Date cutoffDate;
     private BigDecimal creditAmount;
-    private String createBy;
-
-    private Date createdAt;
-    private Date updatedAt;
+    private BigDecimal available;
+    private Boolean active;
 }
