@@ -39,6 +39,9 @@ public class User {
     @JoinColumn(name="user_id")
     private List<Card> cards;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Purchase> purchases;
+
     @PrePersist
     protected void prePersist() {
         this.createdAt = new Date();

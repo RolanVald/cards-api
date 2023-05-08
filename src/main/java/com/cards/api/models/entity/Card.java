@@ -32,6 +32,10 @@ public class Card {
     private Date createdAt;
     private Date updatedAt;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @PrePersist
     protected void prePersist() {
         this.createdAt = new Date();

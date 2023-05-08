@@ -1,7 +1,6 @@
 package com.cards.api.logic;
 
 import com.cards.api.models.dto.CardDTO;
-import com.cards.api.models.entity.Card;
 import com.cards.api.models.service.CardsService;
 import com.cards.api.models.service.validations.NumberService;
 import com.cards.api.models.service.validations.ValidateCardService;

@@ -22,4 +22,5 @@ public class UserDTO {
     private String email;
     private Calendar birthDay;
     private List<CardDTO> cards;
+    private List<PurchaseDTO> purchases;
 }

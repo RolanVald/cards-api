@@ -23,4 +23,5 @@ public class CardDTO {
     private BigDecimal creditAmount;
     private BigDecimal available;
     private Boolean active;
+    private Long userId;
 }

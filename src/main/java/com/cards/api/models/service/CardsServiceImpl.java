@@ -1,10 +1,14 @@
 package com.cards.api.models.service;
 
 import com.cards.api.exception.custom.EntityNotFoundException;
+import com.cards.api.logic.UserCRUDLogic;
 import com.cards.api.mapper.CardMapper;
+import com.cards.api.mapper.UserMapper;
 import com.cards.api.models.dto.CardDTO;
 import com.cards.api.models.entity.Card;
+import com.cards.api.models.entity.User;
 import com.cards.api.repository.CardsRepository;
+import com.cards.api.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +21,11 @@ public class CardsServiceImpl implements CardsService{
     @Autowired
     private CardsRepository repository;
     @Autowired
+    private UserCRUDLogic userCRUDLogic;
+    @Autowired
     private CardMapper cardMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public CardDTO findCardByID(Long id) {
@@ -30,7 +38,11 @@ public class CardsServiceImpl implements CardsService{
     @Override
     public CardDTO createACard(CardDTO cardDTO) {
         LOG.info("Saving card...");
-        Card  card = repository.save(cardMapper.toEntity(cardDTO));
+        User user = userMapper.toEntity(userCRUDLogic.findUser(cardDTO.getUserId()));
+        Card  card = cardMapper.toEntity(cardDTO);
+        card.setUser(user);
+
+        repository.save(card);
         return cardMapper.toDTO(card);
     }
 
