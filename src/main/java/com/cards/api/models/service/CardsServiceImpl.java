@@ -8,7 +8,6 @@ import com.cards.api.models.dto.CardDTO;
 import com.cards.api.models.entity.Card;
 import com.cards.api.models.entity.User;
 import com.cards.api.repository.CardsRepository;
-import com.cards.api.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

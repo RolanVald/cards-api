@@ -7,4 +7,5 @@ public interface PurchaseService {
 
     PurchaseDTO findPurchaseById(Long id);
     PurchaseDTO createPurchase(PurchaseDTO purchaseDTO);
+    PurchaseDTO updatePurchase(PurchaseDTO purchaseDTO, Long id);
 }

@@ -26,14 +26,15 @@ public class Purchase {
     private Date purchaseDate;
     private BigDecimal amount;
     private BigDecimal storedMoney;
-    private BigDecimal realDebt;
+    private boolean installments;
+    private Integer numberOfInstallments;
     @Column( updatable = false)
     private Date createdAt;
     private Date updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "card_id", nullable = false)
+    private Card card;
 
     @PrePersist
     protected void prePersist() {

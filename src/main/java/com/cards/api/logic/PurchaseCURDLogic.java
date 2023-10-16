@@ -22,4 +22,8 @@ public class PurchaseCURDLogic {
     public PurchaseDTO createPurchase(PurchaseDTO purchaseDTO) {
         return purchaseService.createPurchase(purchaseDTO);
     }
+
+    public PurchaseDTO updatePurchase(PurchaseDTO purchaseDTO, Long id) {
+        return purchaseService.updatePurchase(purchaseDTO, id);
+    }
 }

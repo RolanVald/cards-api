@@ -21,5 +21,7 @@ public class PurchaseDTO {
     private Date purchaceDate;
     private BigDecimal amount;
     private BigDecimal storedMoney;
-    private BigDecimal realDebt;
+    private boolean installments;
+    private Integer numberOfInstallments;
+    private Long cardId;
 }

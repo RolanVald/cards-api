@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +25,5 @@ public class CardDTO {
     private BigDecimal available;
     private Boolean active;
     private Long userId;
+    private List<PurchaseDTO> purchases;
 }

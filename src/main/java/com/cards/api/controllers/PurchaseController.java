@@ -2,7 +2,6 @@ package com.cards.api.controllers;
 
 import com.cards.api.logic.PurchaseCURDLogic;
 import com.cards.api.models.dto.PurchaseDTO;
-import com.cards.api.models.entity.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,12 @@ public class PurchaseController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createPurchase(@RequestBody PurchaseDTO purchaseDTO) {//TODO verficar si la card y el purchase se esta creando con el usuario
+    public ResponseEntity<?> createPurchase(@RequestBody PurchaseDTO purchaseDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(purchaseCURDLogic.createPurchase(purchaseDTO));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatePurchase(@PathVariable Long id, @RequestBody  PurchaseDTO purchaseDTO) {
+        return ResponseEntity.ok(purchaseCURDLogic.updatePurchase(purchaseDTO,  id));
     }
 }
